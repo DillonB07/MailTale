@@ -15,17 +15,6 @@ def handle_subscribe_address(body, client):
     county = data["county"]["county"]["value"]
     postcode = data["postcode"]["postcode"]["value"]
     country = data["country"]["country"]["selected_option"]["value"]
-    print(
-        f"""
-        {name}
-        {address_line_1}
-        {address_line_2}
-        {city}
-        {county}
-        {postcode}
-        {country}
-        """
-    )
 
     airtable.create_user(
         user_id=user_id,
