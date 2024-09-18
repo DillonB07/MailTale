@@ -841,7 +841,7 @@ def get_modal(user_id):
                                 "text": "United States of America",
                                 "emoji": True,
                             },
-                            "value": "United States Of America",
+                            "value": "United States",
                         },
                         {
                             "text": {
