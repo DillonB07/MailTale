@@ -19,3 +19,8 @@ def handle_subscribe_international(body, client):
     client.chat_postMessage(
         channel=user_id, user=user_id, text="Thanks for subscribing to the newsletter!"
     )
+
+    client.chat_postMessage(
+        channel=os.environ.get("PUB_CHANNEL_ID"),
+        text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:"
+    )
