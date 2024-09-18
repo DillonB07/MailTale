@@ -1,6 +1,9 @@
+from dotenv import load_dotenv
 from modals.subscribe_international import get_modal
 from utils.airtable import airtable
+import os
 
+load_dotenv()
 
 def handle_subscribe_international(body, client):
     user_id = body["user"]["id"]
