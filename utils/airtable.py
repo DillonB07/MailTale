@@ -45,6 +45,12 @@ class AirtableManager:
         if not user:
             return
         self.subscribers.update(user["id"], updates)
+        
+    def delete_user(self, user_id):
+        user = self.get_user(user_id)
+        if not user:
+            return
+        self.subscribers.delete(user["id"])
 
 
 airtable = AirtableManager(

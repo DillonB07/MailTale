@@ -1,8 +1,7 @@
-from modals.subscribe_international import get_modal
 from utils.airtable import airtable
+from modals.manage_address import get_modal
 
-
-def handle_subscribe_address(body, client):
+def handle_update_address(body, client):
     user_id = body["user"]["id"]
 
     view = body["view"]
@@ -16,24 +15,28 @@ def handle_subscribe_address(body, client):
     postcode = data["postcode"]["postcode"]["value"]
     country = data["country"]["country"]["selected_option"]["value"]
 
-    airtable.create_user(
+    updates = {
+        "Name": name,
+        "Address Line 1": address_line_1,
+        "Address Line 2": address_line_2,
+        "City": city,
+        "County": county,
+        "Postcode": postcode,
+        "Country": country,
+    }
+    airtable.update_user(
         user_id=user_id,
-        name=name,
-        address_line_1=address_line_1,
-        address_line_2=address_line_2,
-        city=city,
-        county=county,
-        postcode=postcode,
-        country=country,
+        **updates
     )
-
-    # if country != "United Kingdom":
-    #     view = get_modal(user_id)
-    #     client.views_open(trigger_id=body["trigger_id"], view=view)
-    #     return
 
     client.chat_postMessage(
         channel=user_id,
         user=user_id,
-        text="Thanks for subscribing to the newsletter!",
+        text="Your address has been updated!",
+    )
+
+    updated_view = get_modal(user_id)
+    client.views_publish(
+        view_id=view["id"],
+        view=updated_view
     )
