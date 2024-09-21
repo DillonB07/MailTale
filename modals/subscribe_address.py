@@ -43,7 +43,10 @@ def get_modal(user_id):
                     "type": "plain_text_input",
                     "multiline": True,
                     "action_id": "address",
-                    "initial_value": "Heidi Hakkuun\n7 Orpheus Avenue\nLittle Stoke\nBristol\nBS34 6JE",
+                    "placeholder": {
+                        "type": "plain_text",
+                        "text": "7 Orpheus Avenue\nLittle Stoke\nBristol\nBS34 6JE",
+                        },
                 },
                 "label": {"type": "plain_text", "text": "Address", "emoji": True},
             },
