@@ -12,21 +12,13 @@ def handle_subscribe_address(body, client):
     data = view["state"]["values"]
 
     name = data["name"]["name"]["value"]
-    address_line_1 = data["address_line_1"]["address_line_1"]["value"]
-    address_line_2 = data["address_line_2"]["address_line_2"].get("value", "")
-    city = data["city"]["city"]["value"]
-    county = data["county"]["county"]["value"]
-    postcode = data["postcode"]["postcode"]["value"]
+    raw_address = data["address"]["address"]["value"]
     country = data["country"]["country"]["selected_option"]["value"]
 
     airtable.create_user(
         user_id=user_id,
         name=name,
-        address_line_1=address_line_1,
-        address_line_2=address_line_2,
-        city=city,
-        county=county,
-        postcode=postcode,
+        raw_address=raw_address,
         country=country,
     )
 

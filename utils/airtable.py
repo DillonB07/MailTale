@@ -19,11 +19,7 @@ class AirtableManager:
         self,
         user_id,
         name,
-        address_line_1,
-        address_line_2,
-        city,
-        county,
-        postcode,
+        raw_address,
         country,
     ):
         print(f"Creating user with ID: {user_id}")
@@ -31,11 +27,7 @@ class AirtableManager:
             {
                 "Slack ID": user_id,
                 "Name": name,
-                "Address Line 1": address_line_1,
-                "Address Line 2": address_line_2,
-                "City": city,
-                "County": county,
-                "Postcode": postcode,
+                "Raw Address": raw_address,
                 "Country": country,
             }
         )

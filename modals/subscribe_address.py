@@ -1,5 +1,6 @@
 from .constants import COUNTRIES
 
+
 def get_modal(user_id):
     return {
         "type": "modal",
@@ -37,65 +38,14 @@ def get_modal(user_id):
             },
             {
                 "type": "input",
-                "block_id": "address_line_1",
+                "block_id": "address",
                 "element": {
                     "type": "plain_text_input",
-                    "action_id": "address_line_1",
-                    "placeholder": {"type": "plain_text", "text": "7 Orpheus Avenue"},
+                    "multiline": True,
+                    "action_id": "address",
+                    "initial_value": "Heidi Hakkuun\n7 Orpheus Avenue\nLittle Stoke\nBristol\nBS34 6JE",
                 },
-                "label": {
-                    "type": "plain_text",
-                    "text": "Address Line 1",
-                    "emoji": True,
-                },
-            },
-            {
-                "type": "input",
-                "block_id": "address_line_2",
-                "optional": True,
-                "element": {
-                    "type": "plain_text_input",
-                    "action_id": "address_line_2",
-                    "placeholder": {
-                        "type": "plain_text",
-                        "text": "Phone: +44-800-RAC-COON",
-                    },
-                },
-                "label": {
-                    "type": "plain_text",
-                    "text": "Address Line 2",
-                    "emoji": True,
-                },
-            },
-            {
-                "type": "input",
-                "block_id": "city",
-                "element": {
-                    "type": "plain_text_input",
-                    "action_id": "city",
-                    "placeholder": {"type": "plain_text", "text": "Little Stoke"},
-                },
-                "label": {"type": "plain_text", "text": "City", "emoji": True},
-            },
-            {
-                "type": "input",
-                "block_id": "county",
-                "element": {
-                    "type": "plain_text_input",
-                    "action_id": "county",
-                    "placeholder": {"type": "plain_text", "text": "Bristol"},
-                },
-                "label": {"type": "plain_text", "text": "County", "emoji": True},
-            },
-            {
-                "type": "input",
-                "block_id": "postcode",
-                "element": {
-                    "type": "plain_text_input",
-                    "action_id": "postcode",
-                    "placeholder": {"type": "plain_text", "text": "BS34 6JE"},
-                },
-                "label": {"type": "plain_text", "text": "Post Code", "emoji": True},
+                "label": {"type": "plain_text", "text": "Address", "emoji": True},
             },
             {
                 "type": "input",
@@ -108,15 +58,17 @@ def get_modal(user_id):
                         "text": "Select an item",
                         "emoji": True,
                     },
-                    "options": [ {
-                        "text": {
-                            "type": "plain_text",
-                            "text": country,
-                            "emoji": True,
-                        },
-                        "value": country,
-                        } for country in COUNTRIES
-                    ]
+                    "options": [
+                        {
+                            "text": {
+                                "type": "plain_text",
+                                "text": country,
+                                "emoji": True,
+                            },
+                            "value": country,
+                        }
+                        for country in COUNTRIES
+                    ],
                 },
                 "label": {"type": "plain_text", "text": "Country", "emoji": True},
             },

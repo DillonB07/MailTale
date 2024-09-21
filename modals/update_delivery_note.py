@@ -43,7 +43,7 @@ def get_modal(user_id):
 			},
 			"label": {
 				"type": "plain_text",
-				"text": "Label",
+				"text": "Delivery Notes",
 				"emoji": True
 			}
 		},
