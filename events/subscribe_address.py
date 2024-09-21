@@ -1,6 +1,9 @@
+from dotenv import load_dotenv
 from modals.subscribe_international import get_modal
 from utils.airtable import airtable
+import os
 
+load_dotenv()
 
 def handle_subscribe_address(body, client):
     user_id = body["user"]["id"]
@@ -36,4 +39,9 @@ def handle_subscribe_address(body, client):
         channel=user_id,
         user=user_id,
         text="Thanks for subscribing to the newsletter!",
+    )
+
+    client.chat_postMessage(
+        channel=os.environ.get("PUB_CHANNEL_ID"),
+        text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:"
     )
