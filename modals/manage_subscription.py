@@ -68,17 +68,17 @@ def get_modal(user_id):
 			},
 			{
 				"type": "actions",
-				"block_id": "coming-soon",
+				"block_id": "volunteer-info",
 				"elements": [
 					{
 						"type": "button",
 						"text": {
 							"type": "plain_text",
-							"text": "Coming soon :eyes:",
+							"text": "Manage Volunteering",
 							"emoji": True
 						},
-						"value": "coming-soon",
-						"action_id": "coming-soon"
+						"value": "volunteer-info",
+						"action_id": "volunteer-info"
 					}
 				]
 			}

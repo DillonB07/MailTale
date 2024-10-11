@@ -9,10 +9,13 @@ from events.toggle_subscription import handle_toggle_subscription
 from events.cancel_subscription import handle_cancel_subscription
 from events.update_address import handle_update_address
 from events.update_delivery_note import handle_update_delivery_note
+from events.volunteer_signup import handle_volunteer_signup
 from modals.manage_address import get_modal as get_manage_address_modal
 from modals.update_address import get_modal as get_update_address_modal
 from modals.update_delivery_note import get_modal as get_update_delivery_note_modal
 from modals.manage_status import get_modal as get_manage_status_modal
+from modals.volunteer_info import get_modal as get_volunteer_info_modal
+from modals.volunteer_signup import get_modal as get_volunteer_signup_modal
 from views.home import generate_home_tab
 
 load_dotenv()
@@ -96,3 +99,23 @@ def toggle_subscription(ack, body, client):
 def cancel_subscription(ack, body, client):
     ack()
     handle_cancel_subscription(body, client)
+
+
+@app.action("volunteer-info")
+def volunteer_info(ack, body, client):
+    ack()
+    view = get_volunteer_info_modal(body["user"]["id"])
+    client.views_push(trigger_id=body["trigger_id"], view=view)
+
+
+@app.view("volunteer_info")
+def handle_view_submission_events(ack, body, client):
+    ack()
+    view = get_volunteer_signup_modal(body["user"]["id"])
+    ack(response_action="update", view=view)
+
+
+@app.view("volunteer_signup")
+def volunteer_signup(ack, body, client):
+    ack()
+    handle_volunteer_signup(body, client)
