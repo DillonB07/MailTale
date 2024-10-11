@@ -4,8 +4,7 @@ import os
 
 from commands.subscribe import handle_subscribe
 from commands.subscription import handle_subscription
-from events.subscribe_address import handle_subscribe_address
-from events.subscribe_international import handle_subscribe_international
+from events.subscribe import handle_subscribe_address
 from events.toggle_subscription import handle_toggle_subscription
 from events.cancel_subscription import handle_cancel_subscription
 from events.update_address import handle_update_address
@@ -45,12 +44,6 @@ def subscription_command(ack, respond, body, client):
 def subscribe_address(ack, body, client):
     ack()
     handle_subscribe_address(body, client)
-
-
-@app.view("subscribe_intl")
-def subscribe_intl(ack, body, client):
-    ack()
-    handle_subscribe_international(body, client)
 
 
 @app.view("update_address")

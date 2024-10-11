@@ -1,5 +1,4 @@
 from dotenv import load_dotenv
-from modals.subscribe_international import get_modal
 from utils.airtable import airtable
 import os
 
@@ -21,11 +20,6 @@ def handle_subscribe_address(body, client):
         raw_address=raw_address,
         country=country,
     )
-
-    # if country != "United Kingdom":
-    #     view = get_modal(user_id)
-    #     client.views_open(trigger_id=body["trigger_id"], view=view)
-    #     return
 
     client.chat_postMessage(
         channel=user_id,
