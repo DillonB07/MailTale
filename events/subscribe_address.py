@@ -37,3 +37,8 @@ def handle_subscribe_address(body, client):
         channel=os.environ.get("PUB_CHANNEL_ID"),
         text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:"
     )
+
+    client.chat_postMessage(
+        channel=os.environ.get("PRIV_CHANNEL_ID"),
+        text=f":blob_bounce: <@{user_id}> just subscribed from {country}!"
+    )

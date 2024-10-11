@@ -18,6 +18,7 @@ def handle_subscribe_international(body, client):
 
     updates = {"Shipping Costs": can_pay}
     airtable.update_user(user_id=user_id, **updates)
+    data = airtable.get_user(user_id=user_id)
 
     client.chat_postMessage(
         channel=user_id, user=user_id, text="Thanks for subscribing to the newsletter!"
@@ -25,5 +26,5 @@ def handle_subscribe_international(body, client):
 
     client.chat_postMessage(
         channel=os.environ.get("PUB_CHANNEL_ID"),
-        text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:"
+        text=f":blob_bounce: Somebody has subscribed to the newsletter from {data['fields']['Country']}!! :yay:"
     )
