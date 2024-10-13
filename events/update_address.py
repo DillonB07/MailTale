@@ -1,5 +1,6 @@
 from utils.airtable import airtable
 
+
 def handle_update_address(body, client):
     user_id = body["user"]["id"]
 
@@ -15,10 +16,7 @@ def handle_update_address(body, client):
         "Raw Address": raw_address,
         "Country": country,
     }
-    airtable.update_user(
-        user_id=user_id,
-        **updates
-    )
+    airtable.update_user(user_id=user_id, **updates)
 
     client.chat_postMessage(
         channel=user_id,

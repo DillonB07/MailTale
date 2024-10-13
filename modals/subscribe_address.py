@@ -46,7 +46,7 @@ def get_modal(user_id):
                     "placeholder": {
                         "type": "plain_text",
                         "text": "7 Orpheus Avenue\nLittle Stoke\nBristol\nBS34 6JE",
-                        },
+                    },
                 },
                 "label": {"type": "plain_text", "text": "Address", "emoji": True},
             },

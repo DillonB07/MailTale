@@ -1,6 +1,7 @@
 from modals.manage_subscription import get_modal
 from utils.airtable import airtable
 
+
 def handle_subscription(ack, respond, body, client):
     ack()
 

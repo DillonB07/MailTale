@@ -4,6 +4,7 @@ import os
 
 load_dotenv()
 
+
 def handle_subscribe_address(body, client):
     user_id = body["user"]["id"]
 
@@ -29,10 +30,10 @@ def handle_subscribe_address(body, client):
 
     client.chat_postMessage(
         channel=os.environ.get("PUB_CHANNEL_ID"),
-        text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:"
+        text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:",
     )
 
     client.chat_postMessage(
         channel=os.environ.get("PRIV_CHANNEL_ID"),
-        text=f":blob_bounce: <@{user_id}> just subscribed from {country}!"
+        text=f":blob_bounce: <@{user_id}> just subscribed from {country}!",
     )

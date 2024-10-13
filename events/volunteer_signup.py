@@ -1,8 +1,13 @@
+import os
+from dotenv import load_dotenv
+
 from utils.airtable import airtable
+
+load_dotenv()
 
 def handle_volunteer_signup(body, client):
     user_id = body["user"]["id"]
-    
+
     view = body["view"]
     data = view["state"]["values"]
 
@@ -19,13 +24,15 @@ def handle_volunteer_signup(body, client):
         "Wants to Mail": True,
     }
 
-    airtable.update_user(
-        user_id=user_id,
-        **updates
-    )
+    airtable.update_user(user_id=user_id, **updates)
 
     client.chat_postMessage(
         channel=user_id,
         user=user_id,
         text="Thanks for signing up to volunteer! If I need the help, I'll be in touch!",
+    )
+
+    client.chat_postMessage(
+        channel=os.environ.get("PRIV_PRIV_CHANNEL_ID"),
+        text=f"<@{user_id}> wants to be a volunteer!",
     )

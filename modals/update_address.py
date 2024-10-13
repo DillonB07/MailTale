@@ -1,9 +1,11 @@
 from utils.airtable import airtable
 from .constants import COUNTRIES
 
+
 def get_modal(user_id):
     user = airtable.get_user(user_id)
-    if not user: return
+    if not user:
+        return
 
     user_data = user["fields"]
     name = user_data.get("Name", "")
@@ -18,13 +20,13 @@ def get_modal(user_id):
         "close": {"type": "plain_text", "text": "Cancel", "emoji": True},
         "blocks": [
             {
-			"type": "header",
-			"text": {
-				"type": "plain_text",
-				"text": "Update Address:",
-                "emoji": True
-			}
-		},
+                "type": "header",
+                "text": {
+                    "type": "plain_text",
+                    "text": "Update Address:",
+                    "emoji": True,
+                },
+            },
             {
                 "type": "input",
                 "block_id": "name",
@@ -32,10 +34,11 @@ def get_modal(user_id):
                     "type": "plain_text_input",
                     "action_id": "name",
                     "placeholder": {"type": "plain_text", "text": "Heidi Hakkuun"},
-                    "initial_value": name
+                    "initial_value": name,
                 },
                 "label": {"type": "plain_text", "text": "Name", "emoji": True},
-            },{
+            },
+            {
                 "type": "input",
                 "block_id": "address",
                 "element": {
@@ -65,15 +68,17 @@ def get_modal(user_id):
                         },
                         "value": country,
                     },
-                    "options": [ {
-                        "text": {
-                            "type": "plain_text",
-                            "text": country,
-                            "emoji": True,
-                        },
-                        "value": country,
-                        } for country in COUNTRIES
-                    ]
+                    "options": [
+                        {
+                            "text": {
+                                "type": "plain_text",
+                                "text": country,
+                                "emoji": True,
+                            },
+                            "value": country,
+                        }
+                        for country in COUNTRIES
+                    ],
                 },
                 "label": {"type": "plain_text", "text": "Country", "emoji": True},
             },
