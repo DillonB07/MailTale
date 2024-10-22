@@ -1,12 +1,12 @@
 from modals.manage_subscription import get_modal
-from utils.airtable import airtable
+from utils.env import env
 
 
 def handle_subscription(ack, respond, body, client):
     ack()
 
     user_id = body.get("user_id")
-    user = airtable.get_user(user_id)
+    user = env.airtable.get_user(user_id)
 
     if not user:
         respond(

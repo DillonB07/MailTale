@@ -1,6 +1,4 @@
-from dotenv import load_dotenv
 from slack_bolt import App
-import os
 
 from commands.subscribe import handle_subscribe
 from commands.subscription import handle_subscription
@@ -18,13 +16,12 @@ from modals.manage_status import get_modal as get_manage_status_modal
 from modals.manage_volunteering import get_modal as get_manage_volunteering_modal
 from modals.volunteer_info import get_modal as get_volunteer_info_modal
 from modals.volunteer_signup import get_modal as get_volunteer_signup_modal
+from utils.env import env
 from views.home import generate_home_tab
 
-load_dotenv()
-
 app = App(
-    token=os.environ.get("SLACK_BOT_TOKEN"),
-    signing_secret=os.environ.get("SLACK_SIGNING_SECRET"),
+    token=env.slack_bot_token,
+    signing_secret=env.slack_signing_secret,
 )
 
 

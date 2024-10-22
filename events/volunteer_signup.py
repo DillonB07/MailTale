@@ -1,9 +1,5 @@
-import os
-from dotenv import load_dotenv
+from utils.env import env
 
-from utils.airtable import airtable
-
-load_dotenv()
 
 def handle_volunteer_signup(body, client):
     user_id = body["user"]["id"]
@@ -24,7 +20,7 @@ def handle_volunteer_signup(body, client):
         "Wants to Mail": True,
     }
 
-    airtable.update_user(user_id=user_id, **updates)
+    env.airtable.update_user(user_id=user_id, **updates)
 
     client.chat_postMessage(
         channel=user_id,
@@ -33,6 +29,6 @@ def handle_volunteer_signup(body, client):
     )
 
     client.chat_postMessage(
-        channel=os.environ.get("PRIV_PRIV_CHANNEL_ID"),
+        channel=env.slack_bts_channel,
         text=f"<@{user_id}> wants to be a volunteer!",
     )

@@ -1,9 +1,9 @@
-from utils.airtable import airtable
+from utils.env import env
 
 
 def handle_cancel_subscription(body, client):
     user_id = body["user"]["id"]
-    airtable.delete_user(user_id)
+    env.airtable.delete_user(user_id)
 
     client.chat_postMessage(
         channel=user_id,

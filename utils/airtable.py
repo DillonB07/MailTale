@@ -52,7 +52,3 @@ class AirtableManager:
         mail = self.mail_requests.first(formula=f'{{Mailer}} = "{mailer_id}"')
         return mail
 
-
-airtable = AirtableManager(
-    api_key=os.environ.get("AIRTABLE_TOKEN"), base_id=os.environ.get("AIRTABLE_BASE_ID")
-)

@@ -1,4 +1,4 @@
-from utils.airtable import airtable
+from utils.env import env
 
 
 def handle_update_address(body, client):
@@ -16,7 +16,7 @@ def handle_update_address(body, client):
         "Raw Address": raw_address,
         "Country": country,
     }
-    airtable.update_user(user_id=user_id, **updates)
+    env.airtable.update_user(user_id=user_id, **updates)
 
     client.chat_postMessage(
         channel=user_id,

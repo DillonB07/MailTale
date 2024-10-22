@@ -1,8 +1,4 @@
-from dotenv import load_dotenv
-from utils.airtable import airtable
-import os
-
-load_dotenv()
+from utils.env import env
 
 
 def handle_subscribe_address(body, client):
@@ -15,7 +11,7 @@ def handle_subscribe_address(body, client):
     raw_address = data["address"]["address"]["value"]
     country = data["country"]["country"]["selected_option"]["value"]
 
-    airtable.create_user(
+    env.airtable.create_user(
         user_id=user_id,
         name=name,
         raw_address=raw_address,
@@ -29,11 +25,11 @@ def handle_subscribe_address(body, client):
     )
 
     client.chat_postMessage(
-        channel=os.environ.get("PUB_CHANNEL_ID"),
+        channel=env.slack_public_channel,
         text=f":blob_bounce: Somebody has subscribed to the newsletter from {country}!! :yay:",
     )
 
     client.chat_postMessage(
-        channel=os.environ.get("PRIV_CHANNEL_ID"),
+        channel=env.slack_mailroom_channel,
         text=f":blob_bounce: <@{user_id}> just subscribed from {country}!",
     )

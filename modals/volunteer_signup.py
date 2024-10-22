@@ -1,8 +1,8 @@
-from utils.airtable import airtable
+from utils.env import env
 
 
 def get_modal(user_id, update=False):
-    user = airtable.get_user(user_id)
+    user = env.airtable.get_user(user_id)
     if not user:
         return
     

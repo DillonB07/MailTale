@@ -1,9 +1,9 @@
-from utils.airtable import airtable
+from utils.env import env
 from .constants import COUNTRIES
 
 
 def get_modal(user_id):
-    user = airtable.get_user(user_id)
+    user = env.airtable.get_user(user_id)
     if not user:
         return
 

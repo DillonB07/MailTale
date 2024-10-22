@@ -1,12 +1,12 @@
-from utils.airtable import airtable
 from modals.subscribe_address import get_modal
+from utils.env import env
 
 
 def handle_subscribe(ack, respond, body, client):
     ack()
 
     user_id = body.get("user_id")
-    user = airtable.get_user(user_id)
+    user = env.airtable.get_user(user_id)
     if user:
         respond(
             "You are already subscribed to the newsletter! Run /subscription to manage your subscription."
