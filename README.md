@@ -75,6 +75,10 @@ Mail Tale is the Slack bot to manage subscriptions for my Hack Club community ne
    - `PUB_CHANNEL_ID`: The public channel to log to
    - `PRIV_CHANNEL_ID`: The private channel to log to (specifies users)
    - `PRIV_PRIV_CHANNEL_ID`: The bts channel to log to (for volunteers)
-   - `AIRTABLE_TOKEN`: The Airtable API token
-   - `AIRTABLE_BASE_ID`: The Airtable base ID
+   - `AIRTABLE_TOKEN`: The Airtable API token with access to the base. Needs permissions to read and write.
+   - `AIRTABLE_BASE_ID`: The Airtable base ID - get this from the URL
+   - `AIRTABLE_PEOPLE_TABLE_ID`: The table ID of the People table - get this from the URL
+   - `AIRTABLE_MAIL_REQUESTS_TABLE_ID`: The table ID of the Mail Requests table - get this from the URL
+   - `AIRTABLE_MAIlABLES_TABLE_ID`: The table ID of the Mailables table - get this from the URL
+
 6. Run the bot with `python3.12 app.py`
