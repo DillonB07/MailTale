@@ -2,7 +2,7 @@ from utils.env import env
 
 
 def get_modal(user_id):
-    user = env.airtable.get_user(user_id)
+    user = env.airtable.get_user(slack_id=user_id)
     if not user:
         return
     delivery_note = user["fields"].get("Delivery Notes", "")

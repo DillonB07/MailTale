@@ -2,10 +2,10 @@ from utils.env import env
 
 
 def get_modal(user_id, update=False):
-    user = env.airtable.get_user(user_id)
+    user = env.airtable.get_user(slack_id=user_id)
     if not user:
         return
-    
+
     courier = user["fields"].get("Local Courier", "Royal Mail")
     domestic_price = str(user["fields"].get("Domestic Shipping Cost", "0.85"))
     international_price = str(user["fields"].get("International Shipping Cost", "2.80"))
@@ -15,7 +15,11 @@ def get_modal(user_id, update=False):
         "type": "modal",
         "callback_id": "volunteer_signup",
         "title": {"type": "plain_text", "text": "Volunteer!", "emoji": True},
-        "submit": {"type": "plain_text", "text": "Offer!" if not update else "Update", "emoji": True},
+        "submit": {
+            "type": "plain_text",
+            "text": "Offer!" if not update else "Update",
+            "emoji": True,
+        },
         "close": {"type": "plain_text", "text": "Cancel", "emoji": True},
         "blocks": [
             {

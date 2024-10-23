@@ -27,7 +27,8 @@ app = App(
 
 @app.event("app_home_opened")
 def update_home_tab(client, event, logger):
-    generate_home_tab(client, event["user"])
+    view = generate_home_tab(client, event["user"])
+    client.views_publish(user_id=event["user"], view=view)
 
 
 @app.command("/subscribe")

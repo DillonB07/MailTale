@@ -3,7 +3,7 @@ from utils.env import env
 
 def handle_toggle_subscription(body, client):
     user_id = body["user"]["id"]
-    user = env.airtable.get_user(user_id)
+    user = env.airtable.get_user(slack_id=user_id)
     if not user:
         return
 

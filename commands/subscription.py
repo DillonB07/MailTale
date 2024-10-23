@@ -6,7 +6,7 @@ def handle_subscription(ack, respond, body, client):
     ack()
 
     user_id = body.get("user_id")
-    user = env.airtable.get_user(user_id)
+    user = env.airtable.get_user(slack_id=user_id)
 
     if not user:
         respond(

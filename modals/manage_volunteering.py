@@ -2,7 +2,7 @@ from utils.env import env
 
 
 def get_modal(user_id):
-    user = env.airtable.get_user(user_id)
+    user = env.airtable.get_user(slack_id=user_id)
     if not user:
         return
     is_volunteer = user["fields"].get("Wants to Mail", False)
@@ -102,8 +102,9 @@ def get_modal(user_id):
         }
 
     if is_approved:
-        mail = env.airtable.get_mailer_mail(user['id'])
-        if not mail: mail = []
+        mail = env.airtable.get_mailer_mail(user["id"])
+        if not mail:
+            mail = []
         sent = len([m for m in mail if m.get("Status") == "Mailed"])
         to_send = len([m for m in mail if m.get("Status") != "Mailed"])
 

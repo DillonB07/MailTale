@@ -4,7 +4,7 @@ from utils.env import env
 def handle_update_delivery_note(body, client):
     view = body["view"]
     user_id = body["user"]["id"]
-    user = env.airtable.get_user(user_id)
+    user = env.airtable.get_user(slack_id=user_id)
     if not user:
         return
 
